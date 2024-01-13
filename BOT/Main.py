@@ -1,10 +1,14 @@
-import discord #Importa la api de dicord
-class MyClient(discord.Client):
-    async def on_ready(self):
-        print(f'Logged on as {self.user}!')
+import discord
 
-    async def on_message(self, message):
-        print(f'Message from {message.author}: {message.content}')
+class MyClient(discord.Client):
+	async def on_ready(self):
+		print(f'Logged on as {self.user}!')
+
+	async def on_message(self, message):
+		print(f'Message from {message.author}: {message.content}')
+		if message.content == "hello":
+			print(f'hello')
+
 
 intents = discord.Intents.default()
 intents.message_content = True
