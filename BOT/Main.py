@@ -1,29 +1,13 @@
 import discord #Importa la api de dicord
+class MyClient(discord.Client):
+    async def on_ready(self):
+        print(f'Logged on as {self.user}!')
 
-bot = discord.Client()
-Token = "XaMJLgC_twM0aby82saSieCd3n6GWkTL"
-@bot.event
-async def on_ready():
-	# cantidad de servidores en los que está
-	guild_count = 0
-	for guild in bot.guilds:
-		# PRINT THE SERVER'S ID AND NAME.
-		print(f"- {guild.id} (name: {guild.name})")
+    async def on_message(self, message):
+        print(f'Message from {message.author}: {message.content}')
 
-		# INCREMENTS THE GUILD COUNTER.
-		guild_count = guild_count + 1
+intents = discord.Intents.default()
+intents.message_content = True
 
-	# PRINTS HOW MANY GUILDS / SERVERS THE BOT IS IN.
-	print("El bot esta en " + str(guild_count) + " server.")
-
-
-# EVENT LISTENER FOR WHEN A NEW MESSAGE IS SENT TO A CHANNEL.
-@bot.event
-async def on_message(message):
-	# CHECKS IF THE MESSAGE THAT WAS SENT IS EQUAL TO "HELLO".
-	if message.content == "hello":
-		# SENDS BACK A MESSAGE TO THE CHANNEL.
-		await message.channel.send("hey dirtbag")
-
-# EXECUTES THE BOT WITH THE SPECIFIED TOKEN. TOKEN HAS BEEN REMOVED AND USED JUST AS AN EXAMPLE.
-bot.run(Token)
+client = MyClient(intents=intents)
+client.run('XaMJLgC_twM0aby82saSieCd3n6GWkTL')
