@@ -1,2 +1,3 @@
 bot-env/
 /BOT/config.py
+/BOT/__pycache__
